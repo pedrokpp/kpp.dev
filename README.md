@@ -1,2 +1,3 @@
-# Meu portifólio
-Meu site simples para armazenar meu currículo e usar de portifólio futuramente
+# kpp.dev
+
+Site destinado a demonstrar projetos que eu contribuí e disponibilizar meios de contato
