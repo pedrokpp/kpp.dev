@@ -5,19 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <script src="https://kit.fontawesome.com/6ca59bd36a.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     <link rel="stylesheet" href="./style.css">
     <title>kpp.dev</title>
 </head>
 <body>
-    <script>
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 0) {
-                document.querySelector('header').classList.add('box-shadow');
-            } else {
-                document.querySelector('header').classList.remove('box-shadow');
-            }
-        });
-    </script>
     <header>
         <div class="logo">
             <span>kpp.dev</span>
@@ -31,5 +23,20 @@
         <div class="items">
         </div>
     </div>
+    <script>
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+                document.querySelector('header').classList.add('box-shadow');
+            } else {
+                document.querySelector('header').classList.remove('box-shadow');
+            }
+        });
+
+        let logo = document.querySelector('.logo span');
+        logo.addEventListener('click', () => {
+            const jsConfetti = new JSConfetti()
+            jsConfetti.addConfetti()
+        })
+    </script>
 </body>
 </html>

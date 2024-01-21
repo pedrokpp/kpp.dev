@@ -33,6 +33,7 @@ header {
 }
 
 header span {
+    font-size: larger;
     cursor: pointer;
 }
 
@@ -41,7 +42,6 @@ header .menu {
     justify-content: space-around;
     align-items: center;
     gap: 2rem;
-    font-size: large;
 }
 
 header span:hover {
