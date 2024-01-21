@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+    --main: #222831;
+    --secondary: #393e46;
+    --yellowish: #ffd369;
+    --whiteish: #eeeeee;
+    --transparent: "transparent";
+
+    color: var(--whiteish);
+    background-color: var(--main);
+    height: 130vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    align-items: center;
+    width: 98%;
+    padding: 2rem;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    user-select: none;
+}
+
+header span {
+    cursor: pointer;
+}
+
+header .menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    font-size: large;
+}
+
+header span:hover {
+    transition: 0.3s;
+    color: var(--yellowish);
+}
+
+.box-shadow {
+    transition: ease 0.5s;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.box svg {
+    width: 2rem;
+    height: 2rem;
+    fill: var(--whiteish);
+    animation: rotate 2s linear infinite;
+}
+
+.box .items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
+}
