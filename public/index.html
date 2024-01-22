@@ -21,6 +21,7 @@
     </header>
     <div class="box">
         <div class="items">
+            <span id="greeting">Bem vindo!</span>
         </div>
     </div>
     <script>
@@ -37,6 +38,17 @@
             const jsConfetti = new JSConfetti()
             jsConfetti.addConfetti()
         })
+
+        let greeting = document.querySelector('#greeting');
+        let date = new Date();
+        let hour = date.getHours();
+        if (hour >= 0 && hour < 12) {
+            greeting.innerHTML = 'Bom dia!';
+        } else if (hour >= 12 && hour < 18) {
+            greeting.innerHTML = 'Boa tarde!';
+        } else {
+            greeting.innerHTML = 'Boa noite!';
+        }
     </script>
 </body>
 </html>
