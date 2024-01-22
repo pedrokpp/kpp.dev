@@ -9,14 +9,21 @@ body {
 
     color: var(--whiteish);
     background-color: var(--main);
-    height: 130vh;
+    height: 100vh;
     width: 100vw;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+.invisible {
+    transition: 0.3s ease;
+    display: none;
 }
 
 header {
@@ -29,7 +36,6 @@ header {
     position: fixed;
     top: 0;
     z-index: 1;
-    user-select: none;
 }
 
 header span {
@@ -63,12 +69,12 @@ header span:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    gap: 4rem;
 }
 
 .box svg {
-    width: 2rem;
-    height: 2rem;
+    width: 1.25rem;
+    height: 1.25rem;
     fill: var(--whiteish);
     animation: rotate 2s linear infinite;
 }
@@ -77,5 +83,35 @@ header span:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    flex-direction: column;
     margin-left: 1rem;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    margin-top: 2rem;
+}
+
+.button {
+    transition: 0.6s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 6px;
+    border: var(--whiteish) 2px solid;
+}
+
+.button:hover {
+    transition: 0.3s ease;
+    width: 4rem;
+    background-color: var(--whiteish);
+    color: var(--main);
+    cursor: pointer;
 }
