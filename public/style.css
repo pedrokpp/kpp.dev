@@ -54,6 +54,11 @@ header span:hover {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
+#greeting {
+    color: var(--yellowish);
+    font-size: x-large;
+}
+
 .box {
     display: flex;
     justify-content: center;
