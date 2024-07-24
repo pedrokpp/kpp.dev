@@ -12,6 +12,12 @@ func New() *echo.Echo {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
+	s := e.Group("/static")
+	s.Use(middleware.StaticWithConfig(middleware.StaticConfig{
+		Root:       "./static",
+		Browse:     false,
+		IgnoreBase: true,
+	}))
 	e.GET("/", handlers.MainPage)
 
 	return e

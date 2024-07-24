@@ -26,20 +26,7 @@ func Welcome(greeting string) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div>Hello ")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var2 string
-		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(greeting)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/components.templ`, Line: 4, Col: 21}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>kpp.dev</title><style>\n        body {\nmargin: 0;\noverflow: hidden;\n          background-color: #f0f0f0;\n        }\n    canvas {\ndisplay: block;\nmargin-top: 5rem;\nwidth: 100vw;\n    }\n#ship {\nposition: absolute;\n          transform-origin: center;\n          transition-timing-function: linear;\n}\n\n.pirate-ship {\ndisplay: flex;\nalign-items: center;\njustify-content: center;\nflex-direction: column;\n}\n</style></head><body><div class=\"pirate-ship\"><canvas id=\"waveCanvas\"></canvas><img src=\"static/sunny.png\" id=\"ship\" alt=\"Navio pirata\" width=\"150\" height=\"150\"></div><script>\nconst canvas = document.getElementById('waveCanvas');\nconst ctx = canvas.getContext('2d');\nconst rectangle = document.getElementById('ship');\n\ncanvas.width = window.innerWidth;\ncanvas.height = window.innerHeight;\n\nconst waveAmplitude = 50;\nconst waveFrequency = 0.008;\nconst waveSpeed = 0.02;\nlet offsetX = 20;\n\nfunction drawWave() {\n    ctx.clearRect(0, 0, canvas.width, canvas.height);\n\n    ctx.beginPath();\n    ctx.moveTo(0, canvas.height / 2);\n\n    for (let x = 0; x < canvas.width; x++) {\n        const y = canvas.height / 2 + waveAmplitude * Math.sin(x * waveFrequency + offsetX);\n        ctx.lineTo(x, y);\n    }\n\n    ctx.strokeStyle = '#007bff';\n    ctx.lineWidth = 2;\n    ctx.stroke();\n    ctx.lineTo(canvas.width-1, canvas.height)\n    ctx.lineTo(0, canvas.height)\n    ctx.fill();\n    ctx.closePath()\n}\n\nlet currentAngle = 0;\nfunction updateRectangle() {\n    const centerX = canvas.width / 2;\n    const wavePositionX = centerX;\n    const wavePositionY = canvas.height / 2 + waveAmplitude * Math.sin(wavePositionX * waveFrequency + offsetX);\n\n    // Set rectangle position\n    rectangle.style.left = `${wavePositionX - 50}px`;\n    rectangle.style.top = `${wavePositionY - 25}px`;\n\n    // Calculate angle for rotation\n    const waveSlope = waveAmplitude * Math.cos(wavePositionX * waveFrequency + offsetX);\n    const targetAngle = Math.atan2(waveSlope, 1) * (180 / Math.PI) * 0.1;\n\n    // Smoothly interpolate between current and target angle\n    const angleDifference = targetAngle - currentAngle;\n    const angleStep = 0.3; // Adjust this value for faster or slower rotation\n    if (Math.abs(angleDifference) > angleStep) {\n        currentAngle += angleStep * Math.sign(angleDifference);\n    } else {\n        currentAngle = targetAngle;\n    }\n\n    // Rotate rectangle to be perpendicular to the wave slope\n    rectangle.style.transform = `rotate(${currentAngle}deg)`;\n}\n\nfunction animate() {\n    offsetX -= waveSpeed;\n    drawWave();\n    updateRectangle();\n    requestAnimationFrame(animate);\n}\n\nanimate();\n</script></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

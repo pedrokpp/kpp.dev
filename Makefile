@@ -1,6 +1,6 @@
 # Change these variables as necessary.
-MAIN_PACKAGE_PATH := ./cmd/semaninha
-BINARY_NAME := semaninha
+MAIN_PACKAGE_PATH := ./cmd/website
+BINARY_NAME := website
 
 # ==================================================================================== #
 # HELPERS
@@ -66,6 +66,11 @@ build:
 .PHONY: run
 run: build
 	/tmp/bin/${BINARY_NAME}
+
+## docker-build-run: docker build and run the  application
+.PHONY: docker-build-run
+docker-build-run: 
+	docker build -t kppdev:latest -f Dockerfile . && docker run -p 8080:8080 kppdev:latest
 
 ## run/live: run the application with reloading on file changes
 .PHONY: run/live

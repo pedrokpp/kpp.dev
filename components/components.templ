@@ -1,5 +1,110 @@
 package components
 
 templ Welcome(greeting string) {
-	<div>Hello {greeting}</div>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>kpp.dev</title>
+			<style>
+        body {
+margin: 0;
+overflow: hidden;
+          background-color: #f0f0f0;
+        }
+    canvas {
+display: block;
+margin-top: 5rem;
+width: 100vw;
+    }
+#ship {
+position: absolute;
+          transform-origin: center;
+          transition-timing-function: linear;
+}
+
+.pirate-ship {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+}
+</style>
+		</head>
+		<body>
+			<div class="pirate-ship">
+				<canvas id="waveCanvas"></canvas>
+				<img src="static/sunny.png" id="ship" alt="Navio pirata" width="150" height="150"/>
+			</div>
+			<script>
+const canvas = document.getElementById('waveCanvas');
+const ctx = canvas.getContext('2d');
+const rectangle = document.getElementById('ship');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const waveAmplitude = 50;
+const waveFrequency = 0.008;
+const waveSpeed = 0.02;
+let offsetX = 20;
+
+function drawWave() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.beginPath();
+    ctx.moveTo(0, canvas.height / 2);
+
+    for (let x = 0; x < canvas.width; x++) {
+        const y = canvas.height / 2 + waveAmplitude * Math.sin(x * waveFrequency + offsetX);
+        ctx.lineTo(x, y);
+    }
+
+    ctx.strokeStyle = '#007bff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.lineTo(canvas.width-1, canvas.height)
+    ctx.lineTo(0, canvas.height)
+    ctx.fill();
+    ctx.closePath()
+}
+
+let currentAngle = 0;
+function updateRectangle() {
+    const centerX = canvas.width / 2;
+    const wavePositionX = centerX;
+    const wavePositionY = canvas.height / 2 + waveAmplitude * Math.sin(wavePositionX * waveFrequency + offsetX);
+
+    // Set rectangle position
+    rectangle.style.left = `${wavePositionX - 50}px`;
+    rectangle.style.top = `${wavePositionY - 25}px`;
+
+    // Calculate angle for rotation
+    const waveSlope = waveAmplitude * Math.cos(wavePositionX * waveFrequency + offsetX);
+    const targetAngle = Math.atan2(waveSlope, 1) * (180 / Math.PI) * 0.1;
+
+    // Smoothly interpolate between current and target angle
+    const angleDifference = targetAngle - currentAngle;
+    const angleStep = 0.3; // Adjust this value for faster or slower rotation
+    if (Math.abs(angleDifference) > angleStep) {
+        currentAngle += angleStep * Math.sign(angleDifference);
+    } else {
+        currentAngle = targetAngle;
+    }
+
+    // Rotate rectangle to be perpendicular to the wave slope
+    rectangle.style.transform = `rotate(${currentAngle}deg)`;
+}
+
+function animate() {
+    offsetX -= waveSpeed;
+    drawWave();
+    updateRectangle();
+    requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+		</body>
+	</html>
 }
