@@ -1,29 +1,411 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#222831" />
-    <meta
-      name="description"
-      content="Portifólio de um desenvolvedor Full Stack"
-    />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>kp</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon_op.ico">
+    <title>pedro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0a0f;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e4e4e7;
+            overflow: hidden;
+            position: relative;
+        }
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+        .background-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .wave-blob {
+            position: absolute;
+            left: -200px;
+            top: 50%;
+            width: 800px;
+            height: 400px;
+            transform: translateY(-50%);
+        }
+
+        .wave-blob path {
+            fill: rgba(139, 92, 246, 0.06);
+            animation: morphWave 12s ease-in-out infinite;
+        }
+
+        @keyframes morphWave {
+            0%, 100% {
+                d: path("M 0,200 Q 200,150 400,200 T 800,200 L 800,400 Q 600,350 400,400 T 0,400 Z");
+            }
+            33% {
+                d: path("M 0,200 Q 200,250 400,200 T 800,200 L 800,400 Q 600,450 400,400 T 0,400 Z");
+            }
+            66% {
+                d: path("M 0,200 Q 200,180 400,200 T 800,200 L 800,400 Q 600,380 400,400 T 0,400 Z");
+            }
+        }
+
+        .circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            left: -150px;
+            animation-delay: 0s;
+        }
+
+        .circle:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            bottom: -200px;
+            right: -200px;
+            animation-delay: 7s;
+        }
+
+        .circle:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            top: 50%;
+            right: -125px;
+            animation-delay: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 3rem;
+            max-width: 600px;
+            background: rgba(18, 15, 24, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(139, 92, 246, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .avatar-container {
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 3px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            object-fit: cover;
+        }
+
+        .avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.25);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #a78bfa, #c4b5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #a1a1aa;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            text-transform: lowercase;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.05);
+            color: #e4e4e7;
+            border-color: rgba(255, 255, 255, 0.2);
+            width: 48px;
+            height: 48px;
+        }
+
+        .btn:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .btn:hover .icon {
+            transform: scale(1.1);
+        }
+
+        .footer {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #71717a;
+            font-size: 0.875rem;
+            text-transform: lowercase;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .typing-text {
+            display: inline;
+            font-family: 'Courier New', monospace;
+            color: #a78bfa;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background-color: #a78bfa;
+            margin-left: 2px;
+            animation: blink 0.7s infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .footer a {
+            color: #a78bfa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #c4b5fd;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .buttons {
+                gap: 1rem;
+            }
+
+            .btn:hover {
+                width: auto;
+                padding: 0.875rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <div class="container">
+        <div class="avatar-container">
+            <img src="https://github.com/pedrokpp.png" alt="Pedro Kozlowski" class="avatar">
+        </div>
+
+        <h1>Pedro Kozlowski</h1>
+        <p class="subtitle">dev & cybersec</p>
+
+        <div class="buttons">
+            <a href="https://github.com/pedrokpp" target="_blank" rel="noopener noreferrer" class="btn" data-text="github">
+                <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+            </a>
+
+            <a href="https://linkedin.com/in/pedrokp" target="_blank" rel="noopener noreferrer" class="btn" data-text="linkedin">
+                <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+            </a>
+
+            <a href="mailto:pedrokp@protonmail.com" class="btn" data-text="email">
+                <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </a>
+
+            <a href="https://github.com/pedrokpp/writeups" target="_blank" rel="noopener noreferrer" class="btn" data-text="write-ups">
+                <svg class="icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                </svg>
+            </a>
+        </div>
+
+        <div class="footer">
+            <p><span class="typing-text" id="typedText"></span><span class="cursor"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const greetings = [
+            'olá',           // português
+            'hello',         // inglês
+            'hola',          // espanhol
+            'bonjour',       // francês
+            'ciao',          // italiano
+            'hallo',         // alemão
+            'こんにちは',      // japonês
+            '你好',          // chinês
+            'привет',        // russo
+            '안녕하세요',      // coreano
+            'नमस्ते',        // hindi
+            'مرحبا',         // árabe
+            'γεια σου',      // grego
+            'שלום',          // hebraico
+            'hej'            // sueco
+        ];
+
+        let usedGreetings = [];
+        let currentCharIndex = 0;
+        let isDeleting = false;
+        let currentText = '';
+        let isHovering = false;
+        let hoveredText = '';
+        const typedTextElement = document.getElementById('typedText');
+        const typingSpeed = 150;
+        const deletingSpeed = 100;
+        const delayBetweenWords = 2000;
+
+        function getRandomGreeting() {
+            if (usedGreetings.length === greetings.length) {
+                usedGreetings = [];
+            }
+            
+            const availableGreetings = greetings.filter(g => !usedGreetings.includes(g));
+            const randomGreeting = availableGreetings[Math.floor(Math.random() * availableGreetings.length)];
+            usedGreetings.push(randomGreeting);
+            return randomGreeting;
+        }
+
+        function typeText() {
+            const targetText = isHovering ? hoveredText : currentText;
+            
+            if (!isDeleting && currentCharIndex === 0 && !isHovering) {
+                currentText = getRandomGreeting();
+            }
+            
+            if (!isDeleting && currentCharIndex <= targetText.length) {
+                typedTextElement.textContent = targetText.substring(0, currentCharIndex);
+                currentCharIndex++;
+                setTimeout(typeText, typingSpeed);
+            } else if (!isDeleting && currentCharIndex > targetText.length) {
+                if (!isHovering) {
+                    setTimeout(() => {
+                        isDeleting = true;
+                        typeText();
+                    }, delayBetweenWords);
+                }
+            } else if (isDeleting && currentCharIndex > 0) {
+                typedTextElement.textContent = targetText.substring(0, currentCharIndex - 1);
+                currentCharIndex--;
+                setTimeout(typeText, deletingSpeed);
+            } else if (isDeleting && currentCharIndex === 0) {
+                isDeleting = false;
+                setTimeout(typeText, 500);
+            }
+        }
+
+        // Event listeners para os botões
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                isHovering = true;
+                hoveredText = button.getAttribute('data-text');
+                isDeleting = true;
+                currentCharIndex = typedTextElement.textContent.length;
+                typeText();
+            });
+
+            button.addEventListener('mouseleave', () => {
+                isHovering = false;
+                isDeleting = true;
+                currentCharIndex = typedTextElement.textContent.length;
+                typeText();
+            });
+        });
+
+        typeText();
+    </script>
+</body>
 </html>
