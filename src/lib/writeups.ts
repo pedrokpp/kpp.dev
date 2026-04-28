@@ -1,3 +1,5 @@
+import airtouch from './writeups/hackthebox/airtouch';
+
 export interface Writeup {
 	slug: string;
 	name: string;
@@ -8,6 +10,7 @@ export interface Writeup {
 }
 
 export const writeups: Writeup[] = [
+	airtouch,
 	{
 		slug: 'lame',
 		name: 'Lame',

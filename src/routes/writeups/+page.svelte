@@ -54,7 +54,7 @@
 			pedro
 		</a>
 		<h1>write-ups</h1>
-		<p class="subtitle">notas de resolução de máquinas e desafios ctf</p>
+		<p class="desc">registro do raciocínio e dos passos para concluir desafios de hacking ético com ambientes vulneráveis intencionais</p>
 		<div class="search-wrap">
 			<svg class="search-icon" width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 				<path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
@@ -171,8 +171,16 @@
 	.subtitle {
 		color: #71717a;
 		font-size: 0.9rem;
-		margin: 0 0 1.25rem;
+		margin: 0 0 0.5rem;
 		text-transform: lowercase;
+	}
+
+	.desc {
+		color: #52525b;
+		font-size: 0.82rem;
+		margin: 0 0 1.5rem;
+		max-width: 480px;
+		line-height: 1.6;
 	}
 
 	.search-wrap {
