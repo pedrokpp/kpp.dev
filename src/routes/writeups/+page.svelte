@@ -168,13 +168,6 @@
 		100% { background-position: 300% center; }
 	}
 
-	.subtitle {
-		color: #71717a;
-		font-size: 0.9rem;
-		margin: 0 0 0.5rem;
-		text-transform: lowercase;
-	}
-
 	.desc {
 		color: #52525b;
 		font-size: 0.82rem;
