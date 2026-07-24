@@ -1,4 +1,5 @@
 import airtouch from './writeups/hackthebox/airtouch';
+import speednet from './writeups/hackthebox/speednet';
 
 export interface Writeup {
 	slug: string;
@@ -10,6 +11,7 @@ export interface Writeup {
 }
 
 export const writeups: Writeup[] = [
+  speednet,
 	airtouch,
 	{
 		slug: 'lame',
