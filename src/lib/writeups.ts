@@ -1,16 +1,26 @@
 import airtouch from './writeups/hackthebox/airtouch';
 import speednet from './writeups/hackthebox/speednet';
+import support from './writeups/hackthebox/support';
+import fireflow from './writeups/hackthebox/fireflow';
+import enigma from './writeups/hackthebox/enigma';
+import nexus from './writeups/hackthebox/nexus';
+import orion from './writeups/hackthebox/orion';
 
 export interface Writeup {
 	slug: string;
 	name: string;
 	platform: string;
-	difficulty: 'Easy' | 'Medium' | 'Hard' | 'Insane';
+	difficulty: 'Very Easy' | 'Easy' | 'Medium' | 'Hard' | 'Insane';
 	os: string;
 	techniques: string[];
 }
 
 export const writeups: Writeup[] = [
+	support,
+	fireflow,
+	enigma,
+	nexus,
+	orion,
   speednet,
 	airtouch,
 	{
@@ -80,6 +90,7 @@ export const writeups: Writeup[] = [
 ];
 
 export const difficultyColor: Record<string, string> = {
+	'Very Easy': '#4ade80',
 	Easy: '#22c55e',
 	Medium: '#f59e0b',
 	Hard: '#ef4444',
